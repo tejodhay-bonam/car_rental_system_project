@@ -1,0 +1,124 @@
+-------------------------------------------------
+-- Create table statements
+-------------------------------------------------
+CREATE TABLE RENTAL_LOCATION
+(
+location_id:int PRIMARY KEY,
+address:varchar(50), 
+city:varchar(50), 
+state:varchar(50),
+);
+
+CREATE TABLE CAR_PRICE
+(
+  Car_Type VARCHAR(15) PRIMARY KEY,
+  Price_Per_Day NUMBER(8,2) NOT NULL  
+);
+
+CREATE TABLE INSURANCE
+(
+id:int PK 
+car_id:int PK, FK 
+insurance_type:varchar(50) 
+insurance_price:int 
+body_coverage:varchar(50) 
+medical_coverage:varchar(50)
+);
+
+CREATE TABLE CAR_USER
+(
+id: int PK 
+name: varchar(50) 
+address:varchar(50) 
+License_id: varchar(50) 
+age:int
+);
+
+CREATE TABLE USER_CREDENTIALS
+(
+cust_id:int PK, FK 
+user_name:varchar(50) 
+password:varchar(50) 
+years_member:int
+);
+
+CREATE TABLE CARD_DETAILS
+(
+cust_id:int PK, FK 
+pay_id:int PK 
+Card_no:int 
+name_on_card:varchar(50) 
+CVV:int 
+exp_date:int 
+Billing_address:varchar(50)
+);
+
+CREATE TABLE CAR
+(
+car_id:int PRIMARY KEY,
+reg_no:int 
+color:varchar(50) 
+year:int model:varchar(50) 
+seating_capacity:int 
+status:varchar(50)
+);
+
+CREATE TABLE OFFER_DETAILS
+(
+  Promo_Code VARCHAR(15) PRIMARY KEY,
+  Description VARCHAR(50),
+  Promo_Type VARCHAR(20) NOT NULL,
+  Is_One_Time CHAR(1),
+  Percentage DECIMAL(5,2),
+  Discounted_Amount NUMBER(8,2),
+  Status VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE RESERVATION
+(
+Reservation_id:int PK 
+cust_id:int PK, FK 
+car_id:int PK, FK 
+Start_date:date 
+End_date:date 
+Actual_end_date:int 
+total_amount:int 
+penalty_amount:int 
+insurance_amount:int 
+drop_address:varchar(50)
+);
+
+CREATE TABLE PAYMENT_DETAILS
+(
+cust_id:int PK, FK 
+pay_id:int PK 
+Card_no:int 
+name_on_card:varchar(50) 
+CVV:int 
+exp_date:int 
+Billing_address:varchar(50)
+);
+
+CREATE TABLE ADDITIONAL_DRIVER
+(
+id:int PK 
+name:varchar(50) 
+address:varchar(50) 
+License_id:varchar(50) 
+age:int
+);
+CREATE TABLE COMPLAINTS
+(
+id: int PK 
+desc: varchar(50) 
+resolved: varchar(50) 
+handled_by : int PK, FK
+rating : int
+);
+CREATE TABLE EMPLOYEES
+(
+id: int PK 
+name: varchar(50) 
+position: varchar(50) 
+rating : int
+);
