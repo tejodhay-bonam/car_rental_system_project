@@ -7,7 +7,7 @@ CREATE TABLE RENTAL_LOCATION
   Phone CHAR(10) NOT NULL,
   Email VARCHAR(25),
   Street_Name VARCHAR(40) NOT NULL,
-  City VARCHAR(20) NOT NULL
+  City VARCHAR(20) NOT NULL,
   State CHAR(2) NOT NULL,
   Zip_Code CHAR(6) NOT NULL
 );
@@ -15,22 +15,22 @@ CREATE TABLE RENTAL_LOCATION
 CREATE TABLE CAR_TYPE
 (
   Car_Type VARCHAR(15) PRIMARY KEY,
-  Price_Per_Day NUMBER(8,2) NOT NULL  
+  Price_Per_Day DECIMAL(8,2) NOT NULL  
 );
 
 CREATE TABLE INSURANCE
 (
   Insurance_Type VARCHAR(15) PRIMARY KEY,
-  Bodily_Coverage NUMBER(8,2) NOT NULL,
-  Medical_Coverage NUMBER(8,2) NOT NULL,
-  Collision_Coverage NUMBER(8,2) NOT NULL
+  Bodily_Coverage DECIMAL(8,2) NOT NULL,
+  Medical_Coverage DECIMAL(8,2) NOT NULL,
+  Collision_Coverage DECIMAL(8,2) NOT NULL
 );
 
 CREATE TABLE CAR_INSURANCE
 (
   Car_Type VARCHAR(15),
   Insurance_Type VARCHAR(15),
-  Insurance_Price NUMBER(8,2) NOT NULL,
+  Insurance_Price DECIMAL(8,2) NOT NULL,
   PRIMARY KEY(Car_Type,Insurance_Type),
   CONSTRAINT CARTYPEFK
   FOREIGN KEY (Car_Type) REFERENCES CAR_TYPE(Car_Type)
@@ -55,13 +55,13 @@ CREATE TABLE CAR_USER
 CREATE TABLE USER_CREDENTIALS
 (
 Customer_Login_ID VARCHAR(15) PRIMARY KEY, 
-Customer_Username:varchar(50) 
-Password VARCHAR(15) NOT NULL, 
+Customer_Username VARCHAR(50), 
+Password  VARCHAR(15) NOT NULL, 
 Year_Of_Membership Char(4) NOT NULL ,
 License_No VARCHAR(15) NOT NULL,
 FOREIGN KEY (License_No) REFERENCES CAR_USER(License_No)
               ON DELETE CASCADE
-);
+
 );
 
 CREATE TABLE CARD_DETAILS
@@ -102,7 +102,7 @@ CREATE TABLE OFFER_DETAILS
   Promo_Type VARCHAR(20) NOT NULL,
   Is_One_Time CHAR(1),
   Percentage DECIMAL(5,2),
-  Discounted_Amount NUMBER(8,2),
+  Discounted_Amount DECIMAL(8,2),
   Status VARCHAR(10) NOT NULL
 );
 
@@ -113,17 +113,17 @@ CREATE TABLE RESERVATION
   End_Date DATE NOT NULL,
   Meter_Start INT NOT NULL,
   Meter_End INT,
-  Rental_Amount NUMBER(8,2) NOT NULL,
-  Insurance_Amount NUMBER(8,2) NOT NULL,
+  Rental_Amount DECIMAL(8,2) NOT NULL,
+  Insurance_Amount DECIMAL(8,2) NOT NULL,
   Actual_End_Date DATE NULL,
   Status VARCHAR(10) NOT NULL,
   License_No VARCHAR(15) NOT NULL,
   Vehicle_ID CHAR(17) NOT NULL,
   Promo_Code VARCHAR(15),
-  Additional_Amount NUMBER(8,2),
-  Tot_Amount NUMBER(8,2) NOT NULL,
+  Additional_Amount DECIMAL(8,2),
+  Tot_Amount DECIMAL(8,2) NOT NULL,
   Insurance_Type VARCHAR(15),
-  Penalty_Amount NUMBER(8,2),
+  Penalty_Amount DECIMAL(8,2),
   Drop_Location_ID INT,  
   FOREIGN KEY (Drop_Location_ID) REFERENCES RENTAL_LOCATION(Rental_Location_ID)
               ON DELETE CASCADE,
@@ -142,7 +142,7 @@ CREATE TABLE RESERVATION
 CREATE TABLE PAYMENT_DETAILS
 (
   Payment_ID INT PRIMARY KEY,
-  Amount_Paid NUMBER(8,2) NOT NULL,
+  Amount_Paid DECIMAL(8,2) NOT NULL,
   Card_No CHAR(16),
   Expiry_Date DATE,
   Name_On_Card VARCHAR(50),
@@ -171,20 +171,20 @@ CREATE TABLE ADDITIONAL_DRIVER
 
 CREATE TABLE EMPLOYEES
 (
-Employee_ID: VARCHAR(15) PRIMARY KEY 
-Name: VARCHAR(20) 
-Position: VARCHAR(20) 
-Rating : INT
+Employee_ID VARCHAR(15) PRIMARY KEY, 
+Name VARCHAR(20), 
+Position VARCHAR(20), 
+Rating INT
 );
 
 CREATE TABLE COMPLAINTS
 (
-Customer_Login_ID: VARCHAR(15), 
-Desc_of_Complaint: VARCHAR(100), 
-Resolved: VARCHAR(50), 
-Employee_ID: VARCHAR(15),
+Customer_Login_ID VARCHAR(15), 
+Desc_of_Complaint VARCHAR(100), 
+Resolved VARCHAR(50), 
+Employee_ID VARCHAR(15),
 FOREIGN KEY (Rating) REFERENCES EMPLOYEES(Rating)
-              ON DELETE CASCADE
+              ON DELETE CASCADE,
 FOREIGN KEY (Employee_ID) REFERENCES EMPLOYEES(Employee_ID)
               ON DELETE CASCADE              
 );
