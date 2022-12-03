@@ -68,13 +68,13 @@ FOREIGN KEY (License_No) REFERENCES CAR_USER(License_No)
 
 CREATE TABLE CARD_DETAILS
 (
-Customer_Login_ID VARCHAR(15) PRIMARY KEY,  
+Customer_Login_ID VARCHAR(15),  
 Card_No CHAR(16) NOT NULL, 
 Name_On_Card VARCHAR(50) NOT NULL,
 CVV CHAR(3) NOT NULL,
 Expiry_Date DATE NOT NULL, 
 Billing_Address VARCHAR(50) NOT NULL,
--- PRIMARY KEY(Customer_Login_ID,Card_No),
+PRIMARY KEY(Customer_Login_ID,Card_No),
 FOREIGN KEY (Customer_Login_ID) REFERENCES USER_CREDENTIALS(Customer_Login_ID)
               ON DELETE CASCADE
 );
